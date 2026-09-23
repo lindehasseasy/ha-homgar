@@ -9,9 +9,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .const import DOMAIN
 from .entity import HomgarEntity, valve_device_info
 
-# duracion del riego manual al encender (mismo valor que manda la app)
-DURACION_ON = 60
-
 
 async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
@@ -40,7 +37,7 @@ class ValveSwitch(HomgarEntity, SwitchEntity):
         return None if v is None else v.get("watering")
 
     async def async_turn_on(self, **kwargs) -> None:
-        await self.coordinator.set_valve(self._sid, True, DURACION_ON)
+        await self.coordinator.set_valve(self._sid, True)
 
     async def async_turn_off(self, **kwargs) -> None:
         await self.coordinator.set_valve(self._sid, False)

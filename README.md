@@ -14,6 +14,8 @@ Por cada hub y cada válvula aparece un dispositivo con sus entidades:
 - **Hub** (p. ej. `HWG0538WRF`): `Conectado`, `Señal` (RSSI, dBm), `Firmware`.
 - **Válvula** (p. ej. `WT-07W` / `HTV0535FRF`):
   - `Riego` — **interruptor**: enciende/apaga el riego (abre/cierra la válvula).
+  - `Duración riego` — **número ajustable**: tiempo de riego que usa el interruptor
+    al encenderse (por defecto 60; se conserva entre reinicios).
   - `Conectado`.
   - `Estado (crudo D01)` — trama de estado en crudo (diagnóstico).
   - `Firmware`.

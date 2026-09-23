@@ -27,5 +27,6 @@ DEFAULT_ISO = "ES"
 DEFAULT_LANGUAGE = "es"
 
 UPDATE_INTERVAL = 60  # segundos entre lecturas de la nube
+DEFAULT_DURATION = 60  # duracion de riego por defecto al encender (ajustable)
 
 MANUFACTURER = "Homgar / RainPoint"

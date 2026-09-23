@@ -10,7 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import HomgarApi, HomgarAuthError
-from .const import UPDATE_INTERVAL
+from .const import DEFAULT_DURATION, UPDATE_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -58,6 +58,8 @@ class HomgarCoordinator(DataUpdateCoordinator):
         )
         self.api = api
         self.entry = entry
+        # duracion de riego (min) por valvula, ajustable desde la entidad numero
+        self.durations: dict = {}
 
     async def _async_update_data(self):
         try:
@@ -98,13 +100,15 @@ class HomgarCoordinator(DataUpdateCoordinator):
         except Exception as err:  # noqa: BLE001
             raise UpdateFailed(f"error leyendo la nube Homgar: {err}") from err
 
-    async def set_valve(self, sid, on: bool, duration: int = 60):
+    async def set_valve(self, sid, on: bool, duration: int | None = None):
         """Abre (on, riego 'duration') o cierra (off) una valvula."""
         v = (self.data or {}).get("valves", {}).get(sid)
         if not v:
             return
         hub = (self.data or {}).get("hubs", {}).get(v["hub_mid"], {})
         mid = hub.get("info", {}).get("mid", v["hub_mid"])
+        if duration is None:
+            duration = self.durations.get(sid, DEFAULT_DURATION)
         mode = 1 if on else 0
         dur = duration if on else 0
         await self.api.control_work_mode(

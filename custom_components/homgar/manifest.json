@@ -1,0 +1,11 @@
+{
+  "domain": "homgar",
+  "name": "Homgar / RainPoint",
+  "version": "1.0.0",
+  "config_flow": true,
+  "documentation": "https://github.com/lindehasseasy/ha-homgar",
+  "issue_tracker": "https://github.com/lindehasseasy/ha-homgar/issues",
+  "requirements": [],
+  "codeowners": ["@lindehasseasy"],
+  "iot_class": "cloud_polling"
+}

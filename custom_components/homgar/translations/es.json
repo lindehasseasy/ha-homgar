@@ -1,0 +1,31 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Homgar / RainPoint",
+        "description": "Entra con la cuenta de la app Homgar.",
+        "data": {
+          "email": "Correo o teléfono",
+          "password": "Contraseña",
+          "area_code": "Código de área (34 = España)",
+          "isocode": "ISO país (ES)",
+          "language": "Idioma (es)",
+          "host": "Servidor"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Volver a entrar en Homgar",
+        "description": "Introduce de nuevo la contraseña de {email}.",
+        "data": { "password": "Contraseña" }
+      }
+    },
+    "error": {
+      "invalid_auth": "Cuenta o contraseña incorrectas.",
+      "cannot_connect": "No se pudo conectar con la nube Homgar."
+    },
+    "abort": {
+      "already_configured": "Esta cuenta ya está configurada.",
+      "reauth_successful": "Sesión renovada."
+    }
+  }
+}
